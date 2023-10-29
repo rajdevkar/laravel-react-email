@@ -15,7 +15,7 @@ class Renderer extends Process
     private function __construct(string $view, array $data = [])
     {
         parent::__construct([
-            (new ExecutableFinder())->find('node'),
+            $data['node'] ?? (new ExecutableFinder())->find('node'),
             base_path('/node_modules/.bin/tsx'),
             __DIR__ .'/../render.tsx',
             config('react-email.template_directory') . $view,
